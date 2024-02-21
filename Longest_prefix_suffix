@@ -1,0 +1,37 @@
+
+
+import java.util.*;
+public class longest_prefix_suffix {
+
+	public static void main(String[] args) {
+		String str="acccbaaacccbaac";
+		int idx=happy(str);
+		String ans=str.substring(0,idx);
+		System.out.println(ans);// TODO Auto-generated method stub
+
+	}
+public static int happy(String str)
+{
+	int dp[]=new int[str.length()];
+	dp[0]=0;
+	int len=0;
+	for(int i=1;i<dp.length; )
+	{
+		if(str.charAt(i)==str.charAt(len))
+		{
+			len++;
+			dp[i]=len;
+			i++;
+		}
+		else
+		{
+			if(len>0)
+				len=dp[len-1];
+			else
+				i++;
+		}
+			
+	}
+	return dp[str.length()-1];
+}
+}
